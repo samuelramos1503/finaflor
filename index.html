@@ -279,53 +279,121 @@
       </div>
     </section>
 
-    <!-- ==================== FORMULÁRIO MONTE SEU ARRANJO ==================== -->
-    <section class="section" id="personalizado">
+    <!-- ==================== MONTADOR INTERATIVO DE PRESENTE / BUQUÊ ==================== -->
+    <section class="section section-alt" id="personalizado">
       <div class="container">
-        
-        <div class="quote-form-card">
-          <div class="section-header text-center" style="margin-bottom: 2rem;">
-            <span class="kicker">PEDIDO PERSONALIZADO</span>
-            <h2 class="section-title">Monte Seu <em>Arranjo ou Cesta</em></h2>
-            <p class="section-lead">Diga-nos a ocasião e como prefere seu presente que montamos uma sugestão perfeita para você.</p>
-          </div>
+        <div class="section-header text-center">
+          <span class="kicker">PEDIDO PERSONALIZADO</span>
+          <h2 class="section-title">Monte Seu <em>Presente Personalizado</em></h2>
+          <p class="section-lead">Escolha as opções desejadas abaixo e envie o pedido formatado direto para o WhatsApp da Fina Flor!</p>
+        </div>
 
-          <form id="customForm" class="form-grid">
-            <div class="form-group">
-              <label for="fOcasion">Qual a Ocasião?</label>
-              <select id="fOcasion" required>
-                <option value="Aniversário">Aniversário</option>
-                <option value="Amor &amp; Romântico">Amor / Romântico</option>
-                <option value="Agradecimento">Agradecimento</option>
-                <option value="Pedido de Desculpas">Pedido de Desculpas</option>
-                <option value="Maternidade / Nascimento">Maternidade / Nascimento</option>
-                <option value="Outra Ocasião">Outra Ocasião</option>
-              </select>
+        <div class="builder-box">
+          <form id="giftBuilderForm">
+            <!-- Passo 1: Ocasião -->
+            <div class="builder-step" id="step-ocasiao">
+              <div class="builder-step-title">
+                <span>1</span> Escolha a Ocasião
+              </div>
+              <div class="options-grid">
+                <div class="option-card selected" data-value="Aniversário / Parabéns">
+                  <span class="option-icon">🎂</span>
+                  <span class="option-name">Aniversário</span>
+                </div>
+                <div class="option-card" data-value="Amor &amp; Romance">
+                  <span class="option-icon">❤️</span>
+                  <span class="option-name">Romance</span>
+                </div>
+                <div class="option-card" data-value="Agradecimento / Carinho">
+                  <span class="option-icon">✨</span>
+                  <span class="option-name">Agradecimento</span>
+                </div>
+                <div class="option-card" data-value="Maternidade / Bebê">
+                  <span class="option-icon">👶</span>
+                  <span class="option-name">Maternidade</span>
+                </div>
+              </div>
             </div>
 
-            <div class="form-group">
-              <label for="fBudget">Faixa de Valor Desejada:</label>
-              <select id="fBudget" required>
-                <option value="Até R$ 100,00">Até R$ 100,00</option>
-                <option value="R$ 100,00 a R$ 200,00">R$ 100,00 a R$ 200,00</option>
-                <option value="R$ 200,00 a R$ 350,00">R$ 200,00 a R$ 350,00</option>
-                <option value="Acima de R$ 350,00">Acima de R$ 350,00</option>
-              </select>
+            <!-- Passo 2: Estilo do Presente -->
+            <div class="builder-step" id="step-flores">
+              <div class="builder-step-title">
+                <span>2</span> Escolha o Estilo do Presente
+              </div>
+              <div class="options-grid">
+                <div class="option-card selected" data-value="Buquê de Rosas Vermelhas">
+                  <span class="option-icon">🌹</span>
+                  <span class="option-name">Rosas Vermelhas</span>
+                </div>
+                <div class="option-card" data-value="Buquê Mix Flores do Campo">
+                  <span class="option-icon">🌻</span>
+                  <span class="option-name">Flores do Campo</span>
+                </div>
+                <div class="option-card" data-value="Orquídea Phalaenopsis em Vaso">
+                  <span class="option-icon">🪴</span>
+                  <span class="option-name">Orquídea em Vaso</span>
+                </div>
+                <div class="option-card" data-value="Cesta Especial de Café da Manhã">
+                  <span class="option-icon">☕</span>
+                  <span class="option-name">Cesta de Café</span>
+                </div>
+              </div>
             </div>
 
-            <div class="form-group" style="grid-column: 1 / -1;">
-              <label for="fMessage">Observações ou Cartão de Mensagem:</label>
-              <textarea id="fMessage" rows="3" placeholder="Ex: Prefiro rosas cor de rosa, entregar no período da manhã em Vila Velha..."></textarea>
+            <!-- Passo 3: Adicionais -->
+            <div class="builder-step" id="step-adicionais">
+              <div class="builder-step-title">
+                <span>3</span> Adicionar Acompanhamentos (Opcional)
+              </div>
+              <div class="options-grid">
+                <div class="option-card" data-value="Chocolates Finos">
+                  <span class="option-icon">🍫</span>
+                  <span class="option-name">Chocolates</span>
+                </div>
+                <div class="option-card" data-value="Urso de Pelúcia">
+                  <span class="option-icon">🧸</span>
+                  <span class="option-name">Pelúcia</span>
+                </div>
+                <div class="option-card" data-value="Vinho / Espumante">
+                  <span class="option-icon">🍷</span>
+                  <span class="option-name">Vinho</span>
+                </div>
+                <div class="option-card" data-value="Balão Personalizado">
+                  <span class="option-icon">🎈</span>
+                  <span class="option-name">Balão</span>
+                </div>
+              </div>
             </div>
 
-            <div style="grid-column: 1 / -1; text-align: center; margin-top: 1rem;">
-              <button type="submit" class="btn btn-whatsapp btn-lg" style="width: 100%; max-width: 420px;">
-                <ion-icon name="logo-whatsapp" style="font-size: 1.3rem;"></ion-icon>
-                Enviar Opções no WhatsApp
+            <!-- Passo 4: Formulário de Envio -->
+            <div class="builder-form-fields">
+              <div class="form-row-2">
+                <div class="form-field">
+                  <label for="builder-nome">Seu Nome (Solicitante)</label>
+                  <input type="text" id="builder-nome" placeholder="Ex: Samuel Ramos" required>
+                </div>
+                <div class="form-field">
+                  <label for="builder-entrega">Modalidade de Entrega</label>
+                  <select id="builder-entrega">
+                    <option value="Entrega em Vila Velha">Entrega em Vila Velha</option>
+                    <option value="Entrega em Vitória">Entrega em Vitória</option>
+                    <option value="Entrega em Cariacica">Entrega em Cariacica</option>
+                    <option value="Retirada na Loja Física">Retirada na Loja Física (Argolas)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label for="builder-obs">Mensagem do Cartão ou Observações</label>
+                <textarea id="builder-obs" rows="2" placeholder="Ex: Escrever no cartão: 'Com todo meu carinho!' Entregar no período da manhã..."></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-whatsapp btn-lg btn-block">
+                <ion-icon name="logo-whatsapp" style="font-size: 1.35rem;"></ion-icon>
+                Enviar Pedido Pronto para o WhatsApp da Fina Flor
               </button>
             </div>
           </form>
-
         </div>
 
       </div>

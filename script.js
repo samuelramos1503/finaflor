@@ -1,5 +1,5 @@
 // ==========================================================================
-// FINA FLOR FLORICULTURA — SCRIPT INTERATIVO (CARROSSEL, MENU & FORMULÁRIO)
+// FINA FLOR FLORICULTURA — SCRIPT INTERATIVO (CARROSSEL, MENU & MONTADOR)
 // ==========================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -114,31 +114,77 @@ document.addEventListener('DOMContentLoaded', () => {
     track.addEventListener('touchstart', () => clearInterval(autoTimer), { passive: true });
   }
 
-  // --- 3. FORMULÁRIO DE MONTE SEU ARRANJO ---
-  const customForm = document.getElementById('customForm');
-  if (customForm) {
-    customForm.addEventListener('submit', (e) => {
+  // --- 3. MONTADOR INTERATIVO DE PRESENTE (NATUREZA EM FLORES STYLE) ---
+  const giftForm = document.getElementById('giftBuilderForm');
+
+  if (giftForm) {
+    // Interatividade nos passos (seleção de cards de opção)
+    const steps = ['step-ocasiao', 'step-flores', 'step-adicionais'];
+
+    steps.forEach(stepId => {
+      const stepEl = document.getElementById(stepId);
+      if (!stepEl) return;
+
+      const cards = stepEl.querySelectorAll('.option-card');
+      cards.forEach(card => {
+        card.addEventListener('click', () => {
+          if (stepId === 'step-adicionais') {
+            // Passo 3 permite múltipla seleção ou desmarcar
+            card.classList.toggle('selected');
+          } else {
+            // Passos 1 e 2 são seleção única
+            cards.forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+          }
+        });
+      });
+    });
+
+    // Envio do formulário montado no WhatsApp
+    giftForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const ocasion = document.getElementById('fOcasion').value;
-      const budget = document.getElementById('fBudget').value;
-      const message = document.getElementById('fMessage').value.trim();
 
-      let text = `Olá, Fina Flor! Gostaria de montar um pedido personalizado pelo site:
+      // Pegar Ocasião
+      const ocasiaoCard = document.querySelector('#step-ocasiao .option-card.selected');
+      const ocasiaoVal = ocasiaoCard ? ocasiaoCard.getAttribute('data-value') : 'Aniversário';
+
+      // Pegar Estilo
+      const estiloCard = document.querySelector('#step-flores .option-card.selected');
+      const estiloVal = estiloCard ? estiloCard.getAttribute('data-value') : 'Buquê de Rosas Vermelhas';
+
+      // Pegar Adicionais
+      const adicionaisCards = document.querySelectorAll('#step-adicionais .option-card.selected');
+      const adicionaisList = Array.from(adicionaisCards).map(c => c.getAttribute('data-value'));
+      const adicionaisVal = adicionaisList.length > 0 ? adicionaisList.join(', ') : 'Nenhum adicional selecionado';
+
+      // Pegar Campos
+      const nomeVal = document.getElementById('builder-nome').value.trim() || 'Cliente Fina Flor';
+      const entregaVal = document.getElementById('builder-entrega').value;
+      const obsVal = document.getElementById('builder-obs').value.trim();
+
+      // Montar Mensagem Formatada
+      let msg = `Olá, equipe Fina Flor! Gostaria de fazer um pedido personalizado pelo site:
 
 `;
-      text += `🌸 *Ocasião:* ${ocasion}
+      msg += `👤 *Solicitante:* ${nomeVal}
 `;
-      text += `💰 *Orçamento:* ${budget}
+      msg += `🌸 *Ocasião:* ${ocasiaoVal}
 `;
-      if (message) {
-        text += `📝 *Observações:* ${message}
+      msg += `💐 *Estilo do Presente:* ${estiloVal}
+`;
+      msg += `🎁 *Acompanhamentos:* ${adicionaisVal}
+`;
+      msg += `📍 *Modalidade:* ${entregaVal}
+`;
+      if (obsVal) {
+        msg += `📝 *Mensagem / Observações:* ${obsVal}
 `;
       }
-      text += `
-Poderiam me enviar algumas sugestões de buquês/cestas?`;
+      msg += `
+Poderiam me informar a disponibilidade e prazo de entrega?`;
 
-      const encodedText = encodeURIComponent(text);
-      const whatsappUrl = `https://api.whatsapp.com/send?phone=5527999709043&text=${encodedText}`;
+      const encodedMsg = encodeURIComponent(msg);
+      const whatsappUrl = `https://api.whatsapp.com/send?phone=5527999709043&text=${encodedMsg}`;
       window.open(whatsappUrl, '_blank');
     });
   }
