@@ -472,12 +472,14 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2.5rem;
+  gap: 2rem;
   overflow-x: auto;
   padding: 0.5rem 0.2rem;
   -webkit-overflow-scrolling: touch;
   width: 100%;
+  scrollbar-width: none;
 }
+.highlights-scroll::-webkit-scrollbar { display: none; }
 
 .highlight-item {
   display: flex;
@@ -855,13 +857,43 @@ button {
 
   .hero-trust-badge { flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 0.4rem; }
 
-  .review-card { flex: 0 0 88vw; width: 88vw; max-width: 340px; padding: 1.4rem 1.2rem; }
-  .reviews-carousel-wrapper { padding: 0 38px; }
-  .prev-btn { left: 0; }
-  .next-btn { right: 0; }
-  .review-nav-btn { width: 38px; height: 38px; font-size: 1.2rem; }
+  .reviews-carousel-wrapper {
+    padding: 0 10px;
+    position: relative;
+  }
+  .reviews-carousel-track {
+    padding: 0.8rem 0;
+    gap: 1rem;
+    scroll-snap-type: x mandatory;
+  }
+  .review-card {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 1.4rem 1.2rem !important;
+    scroll-snap-align: center;
+    box-sizing: border-box !important;
+  }
+  .review-badge-gold {
+    font-size: 0.68rem;
+    padding: 0.2rem 0.5rem;
+    right: 12px;
+  }
+  .prev-btn { left: -6px; }
+  .next-btn { right: -6px; }
+  .review-nav-btn { width: 36px; height: 36px; font-size: 1.1rem; opacity: 0.9; }
   
-  .highlights-scroll { justify-content: center; padding: 0.5rem 0.2rem; gap: 1.2rem; }
+  .highlights-card { padding: 1.5rem 1rem; }
+  .highlights-scroll {
+    justify-content: flex-start !important;
+    gap: 1.2rem !important;
+    padding: 0.5rem 0.5rem !important;
+    scroll-snap-type: x mandatory;
+  }
+  .highlight-item {
+    scroll-snap-align: start;
+    flex: 0 0 auto;
+  }
 }
 
 @media (max-width: 480px) {
