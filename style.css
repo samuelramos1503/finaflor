@@ -471,10 +471,12 @@ button {
 .highlights-scroll {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 2.5rem;
   overflow-x: auto;
   padding: 0.5rem 0.2rem;
   -webkit-overflow-scrolling: touch;
+  width: 100%;
 }
 
 .highlight-item {
@@ -859,7 +861,7 @@ button {
   .next-btn { right: 0; }
   .review-nav-btn { width: 38px; height: 38px; font-size: 1.2rem; }
   
-  .highlights-scroll { justify-content: flex-start; padding: 0.5rem 0.8rem; gap: 1.5rem; }
+  .highlights-scroll { justify-content: center; padding: 0.5rem 0.2rem; gap: 1.2rem; }
 }
 
 @media (max-width: 480px) {
