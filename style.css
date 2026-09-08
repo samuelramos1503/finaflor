@@ -474,12 +474,50 @@ button {
   align-items: center;
   gap: 2rem;
   overflow-x: auto;
-  padding: 0.5rem 0.2rem;
+  padding: 0.5rem 0.2rem 0.8rem;
   -webkit-overflow-scrolling: touch;
   width: 100%;
-  scrollbar-width: none;
+  scrollbar-width: thin;
+  scrollbar-color: #6ee7b7 rgba(255, 255, 255, 0.15);
 }
-.highlights-scroll::-webkit-scrollbar { display: none; }
+
+.highlights-scroll::-webkit-scrollbar {
+  height: 6px;
+  display: block !important;
+}
+
+.highlights-scroll::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  margin: 0 1rem;
+}
+
+.highlights-scroll::-webkit-scrollbar-thumb {
+  background: #6ee7b7;
+  border-radius: 10px;
+}
+
+.highlights-scroll-hint {
+  text-align: center;
+  margin-top: 0.6rem;
+  display: none;
+}
+
+.highlights-scroll-hint span {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #6ee7b7;
+  letter-spacing: 0.05em;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.2rem 0.75rem;
+  border-radius: var(--radius-full);
+}
+
+@media (max-width: 768px) {
+  .highlights-scroll-hint {
+    display: block;
+  }
+}
 
 .highlight-item {
   display: flex;
